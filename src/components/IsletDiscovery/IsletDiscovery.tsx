@@ -23,7 +23,6 @@ const IsletDiscovery: React.FC<IsletDiscoveryProps> = ({ publicPosts, onReaction
   const [recommendedPosts, setRecommendedPosts] = useState<EmotionPost[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
-  const [emotionFilter, setEmotionFilter] = useState<string>('all');
   const [isRandomMode, setIsRandomMode] = useState<boolean>(false);
 
   // 从所有公开帖子中提取可用标签
@@ -58,11 +57,10 @@ const IsletDiscovery: React.FC<IsletDiscoveryProps> = ({ publicPosts, onReaction
     
     // 限制显示数量
     setRecommendedPosts(filtered.slice(0, 5));
-  }, [publicPosts, selectedTags, emotionFilter, isRandomMode]);
+  }, [publicPosts, selectedTags, isRandomMode]);
 
   const handleTagSelect = (tag: string) => {
     if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
     } else {
       setSelectedTags([...selectedTags, tag]);
     }
